@@ -24,14 +24,27 @@ button:hover{
 .numbers{
     box-shadow: 1px 1px 1px black;
     background: gold;
-    width: 40px; 
-    height: 40px;
+    width: 60px; 
+    height: 60px;
     border-radius: 50%;
     display: flex; /* or inline-flex */
     align-items: center; 
     justify-content: center;
+    font-size: 30px;
+    opacity: 0;
 }
-
+.luckyDipNumbers{
+    box-shadow: 1px 1px 1px black;
+    background: gold;
+    width: 30px; 
+    height: 30px;
+    border-radius: 50%;
+    display: flex; /* or inline-flex */
+    align-items: center; 
+    justify-content: center;
+    font-size: 15px;
+    opacity: 0;
+}
 .body {
     display: flex;
     flex-direction: column;
@@ -68,4 +81,17 @@ button:hover{
 }
 .disabledButton {
     background: red;
+}
+.luckyDipContainer {
+    display: flex;
+    flex-direction: column;
+}
+.luckyDipNumberContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.luckydipText{
+    opacity: 0;
 }

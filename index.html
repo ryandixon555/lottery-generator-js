@@ -17,7 +17,6 @@
                 <h3>Number 5</h3> <input class="numberBox" type="text" id="submitChosenBalls5" value="5">
                 <h3>Number 6</h3> <input class="numberBox" type="text" id="submitChosenBalls6" value="6">
             </div>
-        
            
             <div class = "numberContainer">
                 <div class="submit">
@@ -27,15 +26,26 @@
             <h3>OR</h3>
             <div class="submit">
                 <button class= "enabledButton" onclick="luckyDip();">Lucky Dip!</button>
-               
             </div>
+            <div class="luckyDipContainer">
+                <h2 id = "luckydipText" class="luckydipText">Your Lucky Dip numbers are:</h2>
+                <div class = "luckyDipNumberContainer">
+                    <div id="luckydip0" class = "luckyDipNumbers"></div>
+                    <div id="luckydip1" class = "luckyDipNumbers">0</div>
+                    <div id="luckydip2" class = "luckyDipNumbers">0</div>
+                    <div id="luckydip3" class = "luckyDipNumbers">0</div>
+                    <div id="luckydip4" class = "luckyDipNumbers">0</div>
+                    <div id="luckydip5" class = "luckyDipNumbers">0</div>
+                </div>
+            </div>
+           
             <div class="submit">
                 <button id = "submit" class = "disabledButton" onclick="generate();">Start Game!</button>
                 
             </div>
         </div>
         <div class="winningsContainer">
-           <h2>Your numbers are:</h2>
+           <h2>Drawn numbers are:</h2>
            <div class="drawnNumbersContainer">
                 <div id="numbers0" class = "numbers"></div>
                 <div id="numbers1" class = "numbers"></div>
@@ -46,11 +56,12 @@
            </div>
 
             <h2>You have won:</h2>
-            <h3 id="winnings"></h3>
+            <h3 id="winnings">0</h3>
 
             <div class="submit">
                 <button class= "enabledButton" onclick="reset();">Reset</button>
             </div>
+            
         </div>
     </body>
 </html>
