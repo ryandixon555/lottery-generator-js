@@ -6,8 +6,33 @@
     </head>
     <h1>JavaScript Lottery Number Generator</h1>
     <script src="main.js"></script>
+    <h2>Pick Your 6 Balls from 1-59</h2>
+    <h3>Number 1</h3> <input type="text" id="submitChosenBalls1" value="1">
+    <h3>Number 2</h3> <input type="text" id="submitChosenBalls2" value="2">
+    <h3>Number 3</h3> <input type="text" id="submitChosenBalls3" value="3">
+    <h3>Number 4</h3> <input type="text" id="submitChosenBalls4" value="4">
+    <h3>Number 5</h3> <input type="text" id="submitChosenBalls5" value="5">
+    <h3>Number 6</h3> <input type="text" id="submitChosenBalls6" value="6">
     <div class="submit">
-        <button onclick="generate(6, 1, 49);">Generate</button>
+        <button onclick="submitBalls();">Submit Balls!</button>
     </div>
+
+    <div class="submit">
+        <button onclick="luckyDip();">Lucky Dip!</button>
+        <h3>Your numbers are:</h3>
+    </div>
+
+    <div class="submit">
+        <button onclick="generate();">Start Game!</button>
+        
+    </div>
+    <h3>Drawing balls:</h3>
     <div id="numbers"></div>
+
+    <h3>You have won:</h3>
+    <h3 id="winnings"></h3>
+
+    <div class="submit">
+        <button onclick="reset();">Reset</button>
+    </div>
 </html>
