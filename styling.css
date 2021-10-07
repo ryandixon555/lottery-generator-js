@@ -75,7 +75,9 @@ button:hover{
     align-items: center;
     justify-content: space-between;
 }
-
+#winnings {
+    font-size: 32px;
+}
 .enabledButton {
     background:green;
 }

@@ -1,40 +1,75 @@
 let chosenBalls = [];
 let numbers = [];
+let arr = [];
 let endNumber = 59;
 let winningTotal = 0;
+let lastRandom;
+
+/**
+ * Submit your chosen balls
+ */
+function submitBalls() {
+    chosenBalls.push(parseInt(document.getElementById("submitChosenBalls1").value))
+    chosenBalls.push(parseInt(document.getElementById("submitChosenBalls2").value))
+    chosenBalls.push(parseInt(document.getElementById("submitChosenBalls3").value))
+    chosenBalls.push(parseInt(document.getElementById("submitChosenBalls4").value))
+    chosenBalls.push(parseInt(document.getElementById("submitChosenBalls5").value))
+    chosenBalls.push(parseInt(document.getElementById("submitChosenBalls6").value))
+
+    enableButton();
+}
+
+/**
+ * Do a lucky dip
+ */
+function luckyDip() {
+    randomUniqueNum(chosenBalls);
+
+    enableButton();
+
+    document.getElementById("luckydip0").innerHTML = chosenBalls[0];
+    document.getElementById("luckydip1").innerHTML = chosenBalls[1];
+    document.getElementById("luckydip2").innerHTML = chosenBalls[2];
+    document.getElementById("luckydip3").innerHTML = chosenBalls[3];
+    document.getElementById("luckydip4").innerHTML = chosenBalls[4];
+    document.getElementById("luckydip5").innerHTML = chosenBalls[5];
+
+    fadeIn(luckydipText);
+    fadeIn(luckydip0);
+    fadeIn(luckydip1);
+    fadeIn(luckydip2);
+    fadeIn(luckydip3);
+    fadeIn(luckydip4);
+    fadeIn(luckydip5);
+}
+
+/**
+ * Generate a unique random array. This takes a number from 1-59
+ * 
+ * @param {array} Name of array you wish to populate
+ */
+ function randomUniqueNum(array) {
+    for(let i = 0; i < 6; i++) {
+        let randomNumber = Math.floor(Math.random() * endNumber) + 1;
+
+        // Check if it's a duplicate
+        while (randomNumber === lastRandom) {
+            randomNumber = Math.floor(Math.random() * endNumber) + 1;
+        }
+        lastRandom = randomNumber;
+
+        array.push(randomNumber);
+    }
+}
 
 /**
  * Generate the drawn numbers
  */
 function generate() {
-    let highestNumber;
     let time = 150;
 
-	for(let i = 0; i < 6; i++) {
-		let add = true;
-		let randomNumber = Math.floor(Math.random() * endNumber) + 1;
-		for(let y = 0; y < endNumber; y++) {
-			if(numbers[y] == randomNumber) {
-				add = false;
-			}
-		}
-		if(add) {
-			numbers.push(randomNumber);
-		} else {
-			i--;
-		}
-	}
-  
-	for(let m = 0; m < numbers.length; m++) {
-		for(let n = m + 1; n < numbers.length; n++) {
-			if(numbers[n] < numbers[m]) {
-				highestNumber = numbers[m];
-				numbers[m] = numbers[n];
-				numbers[n] = highestNumber;
-			}
-		}
-	}
-  
+    randomUniqueNum(numbers)
+
     document.getElementById("numbers0").innerHTML = numbers[0];
     document.getElementById("numbers1").innerHTML = numbers[1];
     document.getElementById("numbers2").innerHTML = numbers[2];
@@ -48,9 +83,7 @@ function generate() {
     setTimeout(() => { fadeIn(numbers3); }, time * 12);
     setTimeout(() => { fadeIn(numbers4); }, time * 16);
     setTimeout(() => { fadeIn(numbers5); }, time * 20);
-
-    console.log('Numbers ' + numbers)
-
+    
     checkResult(numbers);
 }
 
@@ -76,62 +109,23 @@ function checkResult(numbers) {
     highlightWins();
 
     setTimeout(() => {document.getElementById("winnings").innerHTML = winningTotal;}, 150 * 24);
-   
-    console.log('winnings: ' + winningTotal);
 }
 
 /**
- * Submit your chosen balls
+ * Highlight any wins, which are 3, 4, 5, 6
  */
-function submitBalls() {
-    chosenBalls.push(parseInt(document.getElementById("submitChosenBalls1").value))
-    chosenBalls.push(parseInt(document.getElementById("submitChosenBalls2").value))
-    chosenBalls.push(parseInt(document.getElementById("submitChosenBalls3").value))
-    chosenBalls.push(parseInt(document.getElementById("submitChosenBalls4").value))
-    chosenBalls.push(parseInt(document.getElementById("submitChosenBalls5").value))
-    chosenBalls.push(parseInt(document.getElementById("submitChosenBalls6").value))
+function highlightWins() {
+    let el;
+    let prefix = 'numbers';
 
-    enableButton();
-
-    console.log('Chosen balls: ' + chosenBalls)
-}
-
-/**
- * Do a lucky dip
- */
-function luckyDip() {
-    let c1 = Math.floor(Math.random() * endNumber) + 1;
-    let c2 = Math.floor(Math.random() * endNumber) + 1;
-    let c3 = Math.floor(Math.random() * endNumber) + 1;
-    let c4 = Math.floor(Math.random() * endNumber) + 1;
-    let c5 = Math.floor(Math.random() * endNumber) + 1;
-    let c6  = Math.floor(Math.random() * endNumber) + 1;
-
-    chosenBalls.push(c1)
-    chosenBalls.push(c2)
-    chosenBalls.push(c3)
-    chosenBalls.push(c4)
-    chosenBalls.push(c5)
-    chosenBalls.push(c6)
-
-    enableButton();
-
-    document.getElementById("luckydip0").innerHTML = c1;
-    document.getElementById("luckydip1").innerHTML = c2;
-    document.getElementById("luckydip2").innerHTML = c3;
-    document.getElementById("luckydip3").innerHTML = c4;
-    document.getElementById("luckydip4").innerHTML = c5;
-    document.getElementById("luckydip5").innerHTML = c6;
-
-    fadeIn(luckydipText);
-    fadeIn(luckydip0);
-    fadeIn(luckydip1);
-    fadeIn(luckydip2);
-    fadeIn(luckydip3);
-    fadeIn(luckydip4);
-    fadeIn(luckydip5);
-
-    console.log('lucky dip balls: ' + chosenBalls)
+    for(var i = 0; el = document.getElementById(prefix + i); i++) {
+        if (document.getElementById(prefix + i).innerHTML == 3 && chosenBalls.includes(3) || document.getElementById(prefix + i).innerHTML == 4 && chosenBalls.includes(4) || document.getElementById(prefix + i).innerHTML == 5 && chosenBalls.includes(5) || document.getElementById(prefix + i).innerHTML == 6 && chosenBalls.includes(6)) {
+            document.getElementById(prefix + i).style.color = "green";
+        }    
+        else {
+            document.getElementById(prefix + i).style.color = "red";
+        }
+    }
 }
 
 /**
@@ -151,7 +145,6 @@ function reset() {
     document.getElementById("submitChosenBalls5").value = "";
     document.getElementById("submitChosenBalls6").value = "";
 }
-
 
 function enableButton() {
     var element = document.getElementById("submit");
@@ -195,21 +188,4 @@ function fadeOutAll() {
     document.getElementById("luckydip3").style.opacity = 0;
     document.getElementById("luckydip4").style.opacity = 0;
     document.getElementById("luckydip5").style.opacity = 0;
-}
-
-/**
- * Highlight any wins, which are 3,4,5,6
- */
-function highlightWins() {
-    let el;
-    let prefix = 'numbers';
-
-    for(var i = 0; el = document.getElementById(prefix + i); i++) {
-        if (document.getElementById(prefix + i).innerHTML == 3 && chosenBalls.includes(3) || document.getElementById(prefix + i).innerHTML == 4 && chosenBalls.includes(4) || document.getElementById(prefix + i).innerHTML == 5 && chosenBalls.includes(5) || document.getElementById(prefix + i).innerHTML == 6 && chosenBalls.includes(6)) {
-            document.getElementById(prefix + i).style.color = "green";
-        }    
-        else {
-            document.getElementById(prefix + i).style.color = "red";
-        }
-    }
 }
