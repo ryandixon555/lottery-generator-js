@@ -31,7 +31,12 @@ function generate() {
 		}
 	}
   
-	document.getElementById("numbers").innerHTML = numbers.join(" - ");
+    document.getElementById("numbers0").innerHTML = numbers[0];
+    document.getElementById("numbers1").innerHTML = numbers[1];
+    document.getElementById("numbers2").innerHTML = numbers[2];
+    document.getElementById("numbers3").innerHTML = numbers[3];
+    document.getElementById("numbers4").innerHTML = numbers[4];
+    document.getElementById("numbers5").innerHTML = numbers[5];
 
     console.log('Numbers ' + numbers)
 
@@ -66,6 +71,8 @@ function submitBalls() {
     chosenBalls.push(parseInt(document.getElementById("submitChosenBalls5").value))
     chosenBalls.push(parseInt(document.getElementById("submitChosenBalls6").value))
 
+    enableButton();
+
     console.log('Chosen balls: ' + chosenBalls)
 }
 
@@ -86,6 +93,8 @@ function luckyDip() {
     chosenBalls.push(c5)
     chosenBalls.push(c6)
 
+    enableButton();
+
     console.log('lucky dip balls: ' + chosenBalls)
 }
 
@@ -94,4 +103,20 @@ function reset() {
     numbers = [];
     winningTotal = 0;
     document.getElementById("winnings").innerHTML = winningTotal;
+
+    disableButton();
+}
+
+function enableButton() {
+    var element = document.getElementById("submit");
+    element.classList.remove("disabledButton");
+    element.classList.add("enabledButton");
+    
+}
+
+function disableButton() {
+    var element = document.getElementById("submit");
+    element.classList.remove("enabledButton");
+    element.classList.add("disabledButton");
+   
 }

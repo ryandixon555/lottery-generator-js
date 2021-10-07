@@ -2,37 +2,55 @@
 <html>
     <head>
         <title>JavaScript Lottery Number Generator</title>
-        <link rel="stylesheet" type="text/css" href="example.css"/>
+        <link rel="stylesheet" type="text/css" href="styling.css"/>
     </head>
-    <h1>JavaScript Lottery Number Generator</h1>
-    <script src="main.js"></script>
-    <h2>Pick Your 6 Balls from 1-59</h2>
-    <h3>Number 1</h3> <input type="text" id="submitChosenBalls1" value="1">
-    <h3>Number 2</h3> <input type="text" id="submitChosenBalls2" value="2">
-    <h3>Number 3</h3> <input type="text" id="submitChosenBalls3" value="3">
-    <h3>Number 4</h3> <input type="text" id="submitChosenBalls4" value="4">
-    <h3>Number 5</h3> <input type="text" id="submitChosenBalls5" value="5">
-    <h3>Number 6</h3> <input type="text" id="submitChosenBalls6" value="6">
-    <div class="submit">
-        <button onclick="submitBalls();">Submit Balls!</button>
-    </div>
-
-    <div class="submit">
-        <button onclick="luckyDip();">Lucky Dip!</button>
-        <h3>Your numbers are:</h3>
-    </div>
-
-    <div class="submit">
-        <button onclick="generate();">Start Game!</button>
+    <body class="body">
+        <script src="main.js"></script>
+        <h1 class="title">JavaScript Lottery Number Generator</h1>
+       
+        <div class="choiceContainer">
+            <div class="numberContainer">
+                <h3>Number 1</h3> <input class="numberBox" type="text" id="submitChosenBalls1" value="1">
+                <h3>Number 2</h3> <input class="numberBox" type="text" id="submitChosenBalls2" value="2">
+                <h3>Number 3</h3> <input class="numberBox" type="text" id="submitChosenBalls3" value="3">
+                <h3>Number 4</h3> <input class="numberBox" type="text" id="submitChosenBalls4" value="4">
+                <h3>Number 5</h3> <input class="numberBox" type="text" id="submitChosenBalls5" value="5">
+                <h3>Number 6</h3> <input class="numberBox" type="text" id="submitChosenBalls6" value="6">
+            </div>
         
-    </div>
-    <h3>Drawing balls:</h3>
-    <div id="numbers"></div>
+           
+            <div class = "numberContainer">
+                <div class="submit">
+                    <button class= "enabledButton" onclick="submitBalls();">Submit Balls!</button>
+                </div>
+            </div>
+            <h3>OR</h3>
+            <div class="submit">
+                <button class= "enabledButton" onclick="luckyDip();">Lucky Dip!</button>
+               
+            </div>
+            <div class="submit">
+                <button id = "submit" class = "disabledButton" onclick="generate();">Start Game!</button>
+                
+            </div>
+        </div>
+        <div class="winningsContainer">
+           <h2>Your numbers are:</h2>
+           <div class="drawnNumbersContainer">
+                <div id="numbers0" class = "numbers"></div>
+                <div id="numbers1" class = "numbers"></div>
+                <div id="numbers2" class = "numbers"></div>
+                <div id="numbers3" class = "numbers"></div>
+                <div id="numbers4" class = "numbers"></div>
+                <div id="numbers5" class = "numbers"></div>
+           </div>
 
-    <h3>You have won:</h3>
-    <h3 id="winnings"></h3>
+            <h2>You have won:</h2>
+            <h3 id="winnings"></h3>
 
-    <div class="submit">
-        <button onclick="reset();">Reset</button>
-    </div>
+            <div class="submit">
+                <button class= "enabledButton" onclick="reset();">Reset</button>
+            </div>
+        </div>
+    </body>
 </html>
